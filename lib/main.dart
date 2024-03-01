@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'Translator'),
+      home: const MyHomePage(title: 'Language Translator'),
     );
   }
 }
@@ -28,11 +28,16 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> get createState => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var languages = ['Hindi', 'English', 'Punjabi', 'Bengoli', 'Bhojpuri'];
+  var languages = [
+    'Hindi',
+    'English',
+    'Punjabi',
+    'Bengoli',
+  ];
   var originlang = "From";
   var dest_lang = "To";
   var output = "";
@@ -57,11 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (language == 'Hindi') {
       return "hi";
     } else if (language == "Punjabi") {
-      return "pu";
+      return "pa";
     } else if (language == 'Bengoli') {
       return "bn";
-    } else if (language == "Punjabi") {
-      return "pu";
     } else {
       return '--';
     }
@@ -72,8 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         backgroundColor: Colors.cyan,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(widget.title),
+          backgroundColor: Colors.pink.shade500,
+          title: Center(
+              child: Text(
+            widget.title,
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          )),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -178,7 +185,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       translate(getlanguagecode(originlang),
                           getlanguagecode(dest_lang), lang_controller.text);
                     },
-                    child: Text("Translate")),
+                    child: Text(
+                      "Translate",
+                      style: TextStyle(color: Colors.pink.shade400),
+                    )),
               ),
               SizedBox(
                 height: 20,
